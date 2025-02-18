@@ -1,4 +1,4 @@
-package main
+package jsonhandle
 
 import (
 	"encoding/json"
@@ -15,7 +15,7 @@ type TaskStatus string
 const (
 	STAT_TODO        	TaskStatus = "todo"
 	STAT_IN_PROGRESS 	TaskStatus = "in-progress"
-	STAT_TODO_DONE      TaskStatus = "done"
+	STAT_DONE      TaskStatus = "done"
 )
 
 type Task struct {
@@ -26,7 +26,7 @@ type Task struct {
 	Updated     time.Time	`json:"updated"`
 }
 
-func readTasks() ([]Task, error) {
+func ReadTasks() ([]Task, error) {
 	if _, err := os.Stat(JSON_FILE); errors.Is(err, os.ErrNotExist) {
 		return []Task{}, nil
 	}
@@ -48,7 +48,7 @@ func readTasks() ([]Task, error) {
 	return tasks, nil
 }
 
-func writeTasks(tasks []Task) error {
+func WriteTasks(tasks []Task) error {
 	if _, err := os.Stat(JSON_FILE); err == nil {
 		err := os.Remove(JSON_FILE)
 		if (err != nil) {
@@ -75,8 +75,8 @@ func writeTasks(tasks []Task) error {
 	return nil
 }
 
-func addNewTask(description string) error {
-	tasks, err := readTasks()
+func AddNewTask(description string) error {
+	tasks, err := ReadTasks()
 	if (err != nil) {
 		fmt.Printf("Can't read current task list\n")
 		return err
@@ -84,16 +84,16 @@ func addNewTask(description string) error {
 
 	nexID := len(tasks)
 
-	newTask := Task{nexID, description, STAT_TODO_DONE, time.Now(), time.Now()}
+	newTask := Task{nexID, description, STAT_TODO, time.Now(), time.Now()}
 	tasks = append(tasks, newTask)
 
 	fmt.Printf("Adding task %#v to task list\n", newTask.Title)
 
-	return writeTasks(tasks)
+	return WriteTasks(tasks)
 }
 
-func updateStatus(taskID int, status TaskStatus) error {
-	tasks, err := readTasks()
+func UpdateStatus(taskID int, status TaskStatus) error {
+	tasks, err := ReadTasks()
 	if (err != nil) {
 		fmt.Printf("Can't read current task list\n")
 		return err
@@ -116,11 +116,11 @@ func updateStatus(taskID int, status TaskStatus) error {
 	}
 
 	fmt.Printf("Updating task %#v status\n", taskID)
-	return writeTasks(tasks)
+	return WriteTasks(tasks)
 }
 
-func updateTask(taskID int, description string) error {
-	tasks, err := readTasks()
+func UpdateTask(taskID int, description string) error {
+	tasks, err := ReadTasks()
 	if (err != nil) {
 		fmt.Printf("Can't read current task list\n")
 		return err
@@ -143,11 +143,11 @@ func updateTask(taskID int, description string) error {
 	}
 
 	fmt.Printf("Updating task %#v description\n", taskID)
-	return writeTasks(tasks)
+	return WriteTasks(tasks)
 }
 
-func deleteTask(taskID int) error {
-	tasks, err := readTasks()
+func DeleteTask(taskID int) error {
+	tasks, err := ReadTasks()
 	if (err != nil) {
 		fmt.Printf("Can't read current task list\n")
 		return err
@@ -173,5 +173,5 @@ func deleteTask(taskID int) error {
 	}
 
 	fmt.Printf("Deleting task %#v\n", taskID)
-	return writeTasks(tasks)
+	return WriteTasks(tasks)
 }

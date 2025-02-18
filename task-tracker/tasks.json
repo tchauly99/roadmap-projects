@@ -1,23 +1,30 @@
 [
   {
     "id": 0,
-    "title": "New Status",
-    "status": "done",
-    "created": "2025-02-17T15:28:22.843758529Z",
-    "updated": "2025-02-17T15:28:22.844269554Z"
+    "title": "Go to Truc's birthday party",
+    "status": "todo",
+    "created": "2025-02-18T04:52:36.716253769Z",
+    "updated": "2025-02-18T04:52:36.716253934Z"
   },
   {
     "id": 1,
-    "title": "Task 1",
-    "status": "done",
-    "created": "2025-02-17T15:28:22.84398272Z",
-    "updated": "2025-02-17T15:28:22.843982794Z"
+    "title": "Bring clementine as a gift",
+    "status": "todo",
+    "created": "2025-02-18T04:55:06.060845675Z",
+    "updated": "2025-02-18T04:55:06.060845773Z"
   },
   {
     "id": 2,
-    "title": "Task 3",
-    "status": "in-progress",
-    "created": "2025-02-17T15:28:22.844138057Z",
-    "updated": "2025-02-17T15:28:22.844343984Z"
+    "title": "Bring sea crabs home",
+    "status": "todo",
+    "created": "2025-02-18T04:55:16.950138757Z",
+    "updated": "2025-02-18T04:55:16.950138843Z"
+  },
+  {
+    "id": 3,
+    "title": "Task 1",
+    "status": "done",
+    "created": "2025-02-18T04:55:27.626670195Z",
+    "updated": "2025-02-18T04:56:09.031739054Z"
   }
 ]
